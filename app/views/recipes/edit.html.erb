@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @recipe %> |
-<%= link_to 'Back', recipes_path %>
+<%= link_to 'Show', cookbook_recipe_url(id: @recipe.id, cookbook_id: @cookbook.id) %> |
+<%= link_to 'Back', cookbook_recipes_path %>

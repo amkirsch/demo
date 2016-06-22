@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  resources :resources
-  resources :resources
-  resources :recipes
-  resources :cookbooks
+  resources :cookbooks do
+    resources :recipes do
+      resources :resources
+    end
+  end
   match ':controller(/:action(/:id))', via: [:get, :post]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

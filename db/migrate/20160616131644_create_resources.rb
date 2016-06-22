@@ -1,6 +1,7 @@
 class CreateResources < ActiveRecord::Migration
   def change
     create_table :resources do |t|
+      t.integer "recipe_id"
       t.string :name
       t.string :resource_type
       t.text :properties

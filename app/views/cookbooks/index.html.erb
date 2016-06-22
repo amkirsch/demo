@@ -14,6 +14,7 @@
     <% @cookbooks.each do |cookbook| %>
       <tr>
         <td><%= cookbook.name %></td>
+        <td><%= link_to 'View Recipes', cookbook_recipes_path(cookbook_id: cookbook.id) %></td>
         <td><%= link_to 'Show', cookbook %></td>
         <td><%= link_to 'Edit', edit_cookbook_path(cookbook) %></td>
         <td><%= link_to 'Destroy', cookbook, method: :delete, data: { confirm: 'Are you sure?' } %></td>

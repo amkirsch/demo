@@ -1,4 +1,4 @@
-<%= form_for(@resource, html: { class: "resource form" } ) do |f| %>
+<%= form_for([@cookbook, @recipe, @resource], html: { class: "resource form" } ) do |f| %>
 <% if @resource.errors.any? %>
 <div id="alert alert-danger">
   <h2><%= pluralize(@resource.errors.count, "error") %> prohibited this resource from being saved:</h2>
@@ -11,34 +11,42 @@
 </div>
 <% end %>
 
-<div class="field">
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-</div>
-<div class="field">
-  <%= f.label :resource_type %>
-  <%= f.text_field :resource_type %>
-</div>
 <fieldset>
-  <%= f.label :properties %><br>
+  <legend>Resource</legend>
+  <div class="field">
+    <%= f.label :recipe_id %>
+    <%= f.text_field :recipe_id %>
+  </div>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :resource_type %>
+    <%= f.text_field :resource_type %>
+  </div>
+<fieldset>
+  <legend>Properties</legend>
+  <%# f.label :properties %>
   <button id="add property btn" type="button" name="add property">Add Property</button>
   <input id="add property field" type="text" name="add property name">
   <div id="form properties">
     <%= f.fields_for :properties, OpenStruct.new(f.object.properties || {}) do |f2| %>
       <% @resource.properties.each do |key, value| %>
-        <div class="field">
-          <%= f2.label key %>
-          <%= f2.text_field key %>
-        </div>
+      <div class="field">
+        <%= f2.label key %>
+        <%= f2.text_field key %>
+      </div>
       <% end %>
     <% end %>
-  </fieldset>
-</div>
-<div class="field">
-  <%= f.label :actions %>
-  <%= f.text_field :actions %>
-</div>
-<div class="submit button">
+  </div>
+</fieldset>
+  <div class="field">
+    <%= f.label :actions %>
+    <%= f.text_field :actions %>
+  </div>
+</fieldset>
+<div class="actions submit button">
   <%= f.submit %>
 </div>
 <% end %>

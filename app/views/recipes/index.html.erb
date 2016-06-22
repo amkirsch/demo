@@ -14,14 +14,18 @@
     <% @recipes.each do |recipe| %>
       <tr>
         <td><%= recipe.name %></td>
-        <td><%= link_to 'Show', recipe %></td>
-        <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
-        <td><%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'View Resources', cookbook_recipe_resources_path(recipe_id: recipe.id, cookbook_id: @cookbook.id) %></td>
+        <td><%= link_to 'Show', cookbook_recipe_url(id: recipe.id, cookbook_id: @cookbook.id) %></td>
+        <td><%= link_to 'Edit', edit_cookbook_recipe_path(id: recipe.id, cookbook_id: @cookbook.id) %></td>
+        <td><%= link_to 'Destroy', [@cookbook, recipe], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
 
-<%= link_to 'New Recipe', new_recipe_path %>
+<%= link_to 'New Recipe', new_cookbook_recipe_path(cookbook_id: @cookbook.id) %>
+
+<br> <hr>
+
+<%= link_to 'Back', cookbooks_path %>

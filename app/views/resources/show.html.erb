@@ -20,5 +20,5 @@
   <%= @resource.actions %>
 </p>
 
-<%= link_to 'Edit', edit_resource_path(@resource), class: "btn btn-sm btn-primary" %> |
-<%= link_to 'Back', resources_path, class: "btn btn-sm btn-primary" %>
+<%= link_to 'Edit', edit_cookbook_recipe_resource_path(cookbook_id: @cookbook.id, recipe_id: @resource.recipe_id), method: :get, class: "btn btn-sm btn-primary" %> |
+<%= link_to 'Back', cookbook_recipe_resources_path, class: "btn btn-sm btn-primary" %>

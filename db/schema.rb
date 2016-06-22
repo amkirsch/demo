@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20160616131644) do
   add_index "recipes", ["cookbook_id"], name: "index_recipes_on_cookbook_id"
 
   create_table "resources", force: :cascade do |t|
+    t.integer  "recipe_id"
     t.string   "name"
     t.string   "resource_type"
     t.text     "properties"

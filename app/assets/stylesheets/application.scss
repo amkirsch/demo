@@ -47,4 +47,22 @@ form {
   position: relative;
   width: 740px;
   margin: 0 auto;
+  label {
+    width: 130px;
+    text-align: right;
+    float: left;
+    font-weight: bold;
+    padding-right: 15px;
+  }
+  input {
+    width: 300px;
+    float: left;
+    margin: 2px;
+  }
+  div.field {
+    clear: both;
+    padding: 5px;
+  }
+
+
 }

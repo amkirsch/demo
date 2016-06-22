@@ -1,20 +1,22 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :set_cookbook
 
   # GET /recipes
   # GET /recipes.json
   def index
-    @recipes = Recipe.all
+    @recipes = @cookbook.recipes
   end
 
   # GET /recipes/1
   # GET /recipes/1.json
   def show
+    #@recipe = Recipe.find(params[:recipe_id])
   end
 
   # GET /recipes/new
   def new
-    @recipe = Recipe.new
+    @recipe = Recipe.new({cookbook_id: @cookbook.id})
   end
 
   # GET /recipes/1/edit
@@ -28,8 +30,8 @@ class RecipesController < ApplicationController
 
     respond_to do |format|
       if @recipe.save
-        format.html { redirect_to @recipe, notice: 'Recipe was successfully created.' }
-        format.json { render :show, status: :created, location: @recipe }
+        format.html { redirect_to [@cookbook, @recipe], notice: 'Recipe was successfully created.' }
+        format.json { render :show, status: :created, location: [@cookbook, @recipe] }
       else
         format.html { render :new }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
@@ -42,8 +44,8 @@ class RecipesController < ApplicationController
   def update
     respond_to do |format|
       if @recipe.update(recipe_params)
-        format.html { redirect_to @recipe, notice: 'Recipe was successfully updated.' }
-        format.json { render :show, status: :ok, location: @recipe }
+        format.html { redirect_to [@cookbook, @recipe], notice: 'Recipe was successfully updated.' }
+        format.json { render :show, status: :ok, location: [@cookbook, @recipe] }
       else
         format.html { render :edit }
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
@@ -56,7 +58,7 @@ class RecipesController < ApplicationController
   def destroy
     @recipe.destroy
     respond_to do |format|
-      format.html { redirect_to recipes_url, notice: 'Recipe was successfully destroyed.' }
+      format.html { redirect_to cookbook_recipes_url, notice: 'Recipe was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -67,8 +69,12 @@ class RecipesController < ApplicationController
       @recipe = Recipe.find(params[:id])
     end
 
+    def set_cookbook
+      @cookbook = Cookbook.find(params[:cookbook_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def recipe_params
-      params.require(:recipe).permit(:name)
+      params.require(:recipe).permit(:cookbook_id, :name)
     end
 end
