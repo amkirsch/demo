@@ -1,3 +1,3 @@
 class Resource < ActiveRecord::Base
-  #belongs_to :recipe
+  serialize :properties, Hash
 end

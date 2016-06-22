@@ -1,29 +1,42 @@
 <%= form_for(@resource) do |f| %>
-  <% if @resource.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@resource.errors.count, "error") %> prohibited this resource from being saved:</h2>
+<% if @resource.errors.any? %>
+<div id="alert alert-danger">
+  <h2><%= pluralize(@resource.errors.count, "error") %> prohibited this resource from being saved:</h2>
 
-      <ul>
-      <% @resource.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <ul>
+    <% @resource.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="field">
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</div>
+<div class="field">
+  <%= f.label :resource_type %>
+  <%= f.text_field :resource_type %>
+</div>
+<%= f.label :properties %>
+<button id="add property btn" type="button" name="add property">Add Property</button>
+<input id="add property field" type="text" name="add property name" value="">
+<div id="form properties">
+  <%= f.fields_for :properties, OpenStruct.new(f.object.properties || {}) do |f2| %>
+    <% @resource.properties.each do |key, value| %>
+    <div class="field">
+      <%= f2.label key %>
+      <%= f2.text_field key %>
     </div>
+    <% end %>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :resource_type %><br>
-    <%= f.text_field :resource_type %>
-  </div>
-  <div class="field">
-    <%= f.label :action %><br>
-    <%= f.text_field :action %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+</div>
+<div class="field">
+  <%= f.label :actions %>
+  <%= f.text_area :actions %>
+</div>
+<div class="actions">
+  <%= f.submit %>
+</div>
 <% end %>

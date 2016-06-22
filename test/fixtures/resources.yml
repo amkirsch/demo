@@ -3,9 +3,11 @@
 one:
   name: MyString
   resource_type: MyString
-  action: MyString
+  properties: MyText
+  actions: MyText
 
 two:
   name: MyString
   resource_type: MyString
-  action: MyString
+  properties: MyText
+  actions: MyText

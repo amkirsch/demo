@@ -11,9 +11,14 @@
 </p>
 
 <p>
-  <strong>Action:</strong>
-  <%= @resource.action %>
+  <strong>Properties:</strong>
+  <%= @resource.properties %>
 </p>
 
-<%= link_to 'Edit', edit_resource_path(@resource) %> |
-<%= link_to 'Back', resources_path %>
+<p>
+  <strong>Actions:</strong>
+  <%= @resource.actions %>
+</p>
+
+<%= link_to 'Edit', edit_resource_path(@resource), class: "btn btn-sm btn-primary" %> |
+<%= link_to 'Back', resources_path, class: "btn btn-sm btn-primary" %>

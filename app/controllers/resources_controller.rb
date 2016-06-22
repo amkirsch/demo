@@ -69,6 +69,7 @@ class ResourcesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def resource_params
-      params.require(:resource).permit(:name, :resource_type, :action)
+      all_properties = params.require(:resource).fetch(:properties, nil).try(:permit!)
+      params.require(:resource).permit(:name, :resource_type, :actions).merge(:properties => all_properties)
     end
 end
