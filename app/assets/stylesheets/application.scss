@@ -14,4 +14,37 @@
 //= require_self
 //
 
-@import "bootstrap";
+//@import "bootstrap";
+
+// Below are some SANE defaults to rely on initially
+$font-stack: Hevetica, sans-serif;
+$primary-color: #26343F;
+$secondary-color: #3B4B54;
+
+body {
+  font: 100% $font-stack;
+  color: #FFFFFF;
+  background-color: $primary-color;
+}
+
+a {
+  color: #5AAAFA;
+  text-decoration: none;
+}
+
+table {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  border-collapse: collapse;
+  width: 100%;
+  th, td {
+    border-bottom: 1px solid #ddd;
+  }
+  tr:nth-child(even) { background-color: $secondary-color}
+}
+
+form {
+  position: relative;
+  width: 740px;
+  margin: 0 auto;
+}

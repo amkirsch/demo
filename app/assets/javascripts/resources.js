@@ -18,12 +18,14 @@ function prepareCustomFunctions() {
 
   function createNewPropertyValue(propertyName, propertyClass) {
     var inputProperty = document.createElement("input");
+    inputProperty.setAttribute('class',"");
     inputProperty.setAttribute('type', 'text');
     inputProperty.setAttribute('name', propertyClass + '[properties][' + propertyName + ']');
     return inputProperty;
   }
   function createNewLabel(forLabel, content) {
     var label = document.createElement("label");
+    label.setAttribute('class',"");
     label.setAttribute('for', forLabel);
     label.innerHTML = content;
     return label;
