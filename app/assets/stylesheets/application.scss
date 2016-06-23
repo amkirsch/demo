@@ -44,26 +44,32 @@ table {
 }
 
 form {
-  position: relative;
-  width: 740px;
-  margin: 0 auto;
+  max-width: 600px;
+  margin: 50px auto;
   label {
-    width: 130px;
+    width: 100px;
     text-align: right;
     float: left;
     font-weight: bold;
     padding-right: 15px;
+    margin-bottom: 2px;
   }
   input {
     width: 300px;
     float: left;
-    margin: 2px;
+    margin-bottom: 2px;
+  }
+  fieldset {
+    margin-bottom: 10px;
   }
   div.field {
     clear: both;
     padding: 5px;
   }
-
-
+  div.btn input {
+    float: left;
+    clear: both;
+    width: auto;
+  }
 
 }
