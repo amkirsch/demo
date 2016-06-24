@@ -22,6 +22,8 @@ $primary-color: #26343F;
 $secondary-color: #3B4B54;
 
 body {
+  padding: 0;
+  margin: 0;
   font: 100% $font-stack;
   color: #FFFFFF;
   background-color: $primary-color;
@@ -32,6 +34,64 @@ a {
   text-decoration: none;
 }
 
+nav#top-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  li {
+    float: left;
+  }
+  li a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  li a:hover {
+    background-color: $secondary-color;
+  }
+}
+
+nav#side-nav {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  bottom: 0;
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+    width: 150px;
+  }
+  li {
+    border: 1px solid #000;
+  }
+  li a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  li a:hover {
+    background-color: $secondary-color;
+  }
+}
+
+nav {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 table {
   margin-top: 20px;
   margin-bottom: 40px;
@@ -41,6 +101,19 @@ table {
     border-bottom: 1px solid #ddd;
   }
   tr:nth-child(even) { background-color: $secondary-color}
+}
+
+div.main_content {
+  padding: 15px;
+  position: relative;
+  top: 50px;
+  left: 150px;
+}
+
+div.admin_content {
+  padding: 15px;
+  position: relative;
+  top: 50px;
 }
 
 form {

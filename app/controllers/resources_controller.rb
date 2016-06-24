@@ -2,6 +2,7 @@ class ResourcesController < ApplicationController
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
   before_action :set_recipe, :set_cookbook
 
+  layout "admin"
   # GET /resources
   # GET /resources.json
   def index

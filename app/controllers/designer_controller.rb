@@ -1,5 +1,9 @@
 class DesignerController < ApplicationController
   def index
-    @resources = Resource.all
+    @cookbook = Cookbook.find_by name: 'test'
+  end
+
+  def resources
+    @assets = 'resources'
   end
 end

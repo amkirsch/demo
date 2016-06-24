@@ -2,6 +2,8 @@
 
 one:
   name: MyString
+  cookbook: one
 
 two:
   name: MyString
+  cookbook: two

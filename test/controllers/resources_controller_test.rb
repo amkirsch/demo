@@ -1,5 +1,6 @@
 require 'test_helper'
 
+# TODO: None of these tests are working, due to the resource nesting changes.
 class ResourcesControllerTest < ActionController::TestCase
   setup do
     @resource = resources(:one)

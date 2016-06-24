@@ -1,6 +1,8 @@
 class CookbooksController < ApplicationController
   before_action :set_cookbook, only: [:show, :edit, :update, :destroy]
 
+  layout "admin"
+
   # GET /cookbooks
   # GET /cookbooks.json
   def index

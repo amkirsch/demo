@@ -8,7 +8,22 @@
 </head>
 <body>
 
-<%= yield %>
+  <nav id="top-nav">
+    <ul>
+      <li><%= link_to 'Home', {controller: 'designer', action: 'index'} %></li>
+      <li><%= link_to 'Cookbooks', cookbooks_path %></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contacts</a></li>
+    </ul>
+  </nav>
+
+<%= render 'cookbook_nav' %>
+
+<div class="main_content">
+
+    <%= yield %>
+
+</div>
 
 </body>
 </html>

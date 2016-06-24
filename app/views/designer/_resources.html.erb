@@ -1,0 +1,14 @@
+
+<code>
+  <textarea name="resource" rows="20" cols="80" autofocus="true"  >
+<% @resources.each do |resource| %>
+<%= resource.resource_type %> "<%= resource.name %>" do
+<% resource.properties.each do |key, value| %>
+  <%= key %> "<%= value %>"
+<% end %>
+  action :<%= resource.actions %>
+end
+
+<% end %>
+  </textarea>
+</code>
