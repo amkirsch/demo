@@ -1,9 +1,13 @@
 class DesignerController < ApplicationController
   def index
-    @cookbook = Cookbook.find_by name: 'test'
+    @cookbooks = Cookbook.all
   end
 
   def resources
-    @assets = 'resources'
+    @recipe = Recipe.find(params[:recipe_id])
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 end

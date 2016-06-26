@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'users/new'
+
   resources :cookbooks do
     resources :recipes do
       resources :resources

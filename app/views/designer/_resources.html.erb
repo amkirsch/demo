@@ -1,14 +1,13 @@
-
-<code>
-  <textarea name="resource" rows="20" cols="80" autofocus="true"  >
+<legend><%= @recipe.name %></legend>
+<% @resources = @recipe.resources %>
 <% @resources.each do |resource| %>
 <%= resource.resource_type %> "<%= resource.name %>" do
 <% resource.properties.each do |key, value| %>
   <%= key %> "<%= value %>"
 <% end %>
-  action :<%= resource.actions %>
+  <%# resource.actions.each do |action| %>
+  action :<%= resource.actions %><%# action.to_s %>
+  <%# end %>
 end
 
 <% end %>
-  </textarea>
-</code>

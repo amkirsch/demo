@@ -15,7 +15,8 @@
   <legend>Resource</legend>
   <div class="field">
     <%= f.label :recipe_id %>
-    <%= f.text_field :recipe_id %>
+    <%= f.hidden_field :recipe_id, read_only: true %>
+    <%=  %>
   </div>
   <div class="field">
     <%= f.label :name %>

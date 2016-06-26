@@ -1,8 +1,10 @@
 <nav id="side-nav">
   <ul>
-    <li><%= link_to 'Cookbook', {controller: 'designer', action: 'resources'} %></li>
-    <li><%= link_to 'Cookbooks', cookbooks_path %></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Contacts</a></li>
+    <% @cookbooks.each do |cookbook| %>
+    <li><strong><%= cookbook.name.capitalize %></strong></li>
+      <% cookbook.recipes.each do |recipe| %>
+        <li><%= link_to recipe.name, {controller: 'designer', action: 'resources', recipe_id: recipe.id}, remote: true %></li>
+      <% end %>
+    <% end %>
   </ul>
 </nav>
