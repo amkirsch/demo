@@ -20,13 +20,14 @@
 $font-stack: Hevetica, sans-serif;
 $primary-color: #26343F;
 $secondary-color: #3B4B54;
+$tertiary-color: #4D636F;
 
 body {
   padding: 0;
   margin: 0;
   font: 100% $font-stack;
   color: #FFFFFF;
-  background-color: $primary-color;
+  background-color: $tertiary-color;
 }
 
 a {
