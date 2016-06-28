@@ -41,8 +41,14 @@ function prepareCustomFunctions() {
   var addPropertyButton = document.getElementById("add property btn");
   addPropertyButton.onclick = function () {
     var newPropertyName = document.getElementById("add property field");
-    var properties = document.getElementById("form properties");
-    properties.appendChild(createNewProperty(newPropertyName.value, "resource"));
+    if (newPropertyName.value == "") {
+      document.getElementById("error property btn").innerHTML = "Please fill in a name for the property name field."
+      return false;
+    } else {
+      document.getElementById("error property btn").innerHTML = ""
+      var properties = document.getElementById("form properties");
+      properties.appendChild(createNewProperty(newPropertyName.value, "resource"));
+    }
   };
 
 }
