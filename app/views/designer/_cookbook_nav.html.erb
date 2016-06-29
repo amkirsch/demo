@@ -3,7 +3,10 @@
     <% @cookbooks.each do |cookbook| %>
     <li><strong><%= cookbook.name.capitalize %></strong></li>
       <% cookbook.recipes.each do |recipe| %>
-        <li><%= link_to recipe.name, {controller: 'designer', action: 'resources', recipe_id: recipe.id}, remote: true %></li>
+         <li><%= link_to recipe.name, {controller: 'designer', action: 'resources', recipe_id: recipe.id}, remote: true %></li>
+          <% recipe.resources.each do |resource| %>
+            <li class="resource">- <%= "#{resource.resource_type}: #{resource.name}" %></li>
+          <% end %>
       <% end %>
     <% end %>
   </ul>

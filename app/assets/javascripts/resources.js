@@ -2,27 +2,23 @@
 // All this logic will automatically be available in application.js.
 // You can use CoffeeScript in this file: http://coffeescript.org/
 
-// $( "#dialog" ).dialog({
-//   dialogClass: "no-close",
-//   buttons: [
-//     {
-//       text: "OK",
-//       click: function() {
-//         $( this ).dialog( "close" );
-//       }
-//     }
-//   ]
-// });
+// TODO: Dear God, so many things..  This entire setup should probably be refactored.
 
 function prepareCustomFunctions() {
 
-  function createNewPropertyValue(propertyName, propertyClass) {
+  function deleteProperty(propertyName) {
+    var property = document.getElementById("custom property " + propertyName);
+    property.innerHTML = '';
+  }
+
+  function createNewPropertyValue(propertyName, propertyObject) {
     var inputProperty = document.createElement("input");
     inputProperty.setAttribute('class',"");
     inputProperty.setAttribute('type', 'text');
-    inputProperty.setAttribute('name', propertyClass + '[properties][' + propertyName + ']');
+    inputProperty.setAttribute('name', propertyObject + '[properties][' + propertyName + ']');
     return inputProperty;
   }
+
   function createNewLabel(forLabel, content) {
     var label = document.createElement("label");
     label.setAttribute('class',"");
@@ -30,12 +26,34 @@ function prepareCustomFunctions() {
     label.innerHTML = content;
     return label;
   }
-  function createNewProperty(propertyName, propertyClass)  {
+
+  function createNewPropertyDeleteBtn(propertyName, propertyObject) {
+    var deletePropertyBtn = document.createElement("button");
+    deletePropertyBtn.innerHTML = 'Delete'
+    deletePropertyBtn.setAttribute('class', "delete_button")
+    deletePropertyBtn.addEventListener("click", function() {
+      deletePropertyBtn.parentNode.innerHTML = '';
+    });
+    // deletePropertyBtn.onclick = deleteProperty(propertyName);
+    return deletePropertyBtn;
+  }
+
+  function createNewProperty(propertyName, propertyObject)  {
     var property = document.createElement("div");
     property.setAttribute('class',"field");
-    property.appendChild(createNewLabel(propertyClass + '_properties_' + propertyName, propertyName));
-    property.appendChild(createNewPropertyValue(propertyName, propertyClass));
+    property.setAttribute('id',"custom property " + propertyName);
+    property.appendChild(createNewLabel(propertyObject + '_properties_' + propertyName, propertyName));
+    property.appendChild(createNewPropertyValue(propertyName, propertyObject));
+    property.appendChild(createNewPropertyDeleteBtn(propertyName, propertyObject));
     return property;
+  }
+
+  var buttons = document.getElementsByClassName("delete_button");
+  for (var i = 0; i < buttons.length; i++) {
+    var button = buttons[i];
+    button.addEventListener("click", function() {
+      this.parentNode.innerHTML = '';
+    });
   }
 
   var addPropertyButton = document.getElementById("add property btn");
@@ -50,6 +68,32 @@ function prepareCustomFunctions() {
       properties.appendChild(createNewProperty(newPropertyName.value, "resource"));
     }
   };
+
+  var resources = document.getElementsByClassName ("resource");
+  //ele.onmousedown = eleMouseDown;
+  for (var i = 0; i < resources.length; i++) {
+    resource = resources[i];
+    resource.addEventListener ("mousedown" , eleMouseDown , false);
+  }
+
+
+  function eleMouseDown () {
+    stateMouseDown = true;
+    document.addEventListener ("mousemove" , eleMouseMove , false);
+  }
+
+  function eleMouseMove (ev) {
+    var pX = ev.pageX;
+    var pY = ev.pageY;
+    ele.style.left = pX + "px";
+    ele.style.top = pY + "px";
+    document.addEventListener ("mouseup" , eleMouseUp , false);
+  }
+
+  function eleMouseUp () {
+    document.removeEventListener ("mousemove" , eleMouseMove , false);
+    document.removeEventListener ("mouseup" , eleMouseUp , false);
+  }
 
 }
 
