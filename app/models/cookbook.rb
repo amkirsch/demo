@@ -3,7 +3,8 @@ class Cookbook < ActiveRecord::Base
 
   validates_presence_of :name
   validates_uniqueness_of :name
-  
+
   scope :oldest_first, lambda { order("cookbooks.created_at ASC") }
+  scope :newest_first, lambda { order("cookbooks.created_at DESC") }
   scope :search, lambda { |query| where(["name LIKE ?", "%#{query}%"]) }
 end

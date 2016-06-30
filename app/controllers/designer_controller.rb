@@ -1,6 +1,6 @@
 class DesignerController < ApplicationController
   def index
-    @cookbooks = Cookbook.all
+    @cookbooks = Cookbook.newest_first
   end
 
   def resources

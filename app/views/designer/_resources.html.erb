@@ -1,13 +1,3 @@
 <legend><%= @recipe.name %></legend>
 <% @resources = @recipe.resources %>
-<% @resources.each do |resource| %>
-<%= resource.resource_type %> "<%= resource.name %>" do
-<% resource.properties.each do |key, value| %>
-  <%= key %> "<%= value %>"
-<% end %>
-  <%# resource.actions.each do |action| %>
-  action :<%= resource.actions %><%# action.to_s %>
-  <%# end %>
-end
-
-<% end %>
+<%= render partial: 'resource', collection: @resources %>
