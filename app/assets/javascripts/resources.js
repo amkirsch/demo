@@ -4,7 +4,7 @@
 
 // TODO: Dear God, so many things..  This entire setup should probably be refactored.
 
-function prepareCustomFunctions() {
+function prepareResourceFunctions() {
 
   function deleteProperty(propertyName) {
     var property = document.getElementById("custom property " + propertyName);
@@ -57,46 +57,19 @@ function prepareCustomFunctions() {
   }
 
   var addPropertyButton = document.getElementById("add property btn");
-  addPropertyButton.onclick = function () {
-    var newPropertyName = document.getElementById("add property field");
-    if (newPropertyName.value == "") {
-      document.getElementById("error property btn").innerHTML = "Please fill in a name for the property name field."
-      return false;
-    } else {
-      document.getElementById("error property btn").innerHTML = ""
-      var properties = document.getElementById("form properties");
-      properties.appendChild(createNewProperty(newPropertyName.value, "resource"));
-    }
-  };
-
-  var resources = document.getElementsByClassName ("resource");
-  //ele.onmousedown = eleMouseDown;
-  for (var i = 0; i < resources.length; i++) {
-    resource = resources[i];
-    resource.addEventListener ("mousedown" , eleMouseDown , false);
+  if (addPropertyButton instanceof Object) {
+    addPropertyButton.onclick = function () {
+      var newPropertyName = document.getElementById("add property field");
+      if (newPropertyName.value == "") {
+        document.getElementById("error property btn").innerHTML = "Please fill in a name for the property name field."
+        return false;
+      } else {
+        document.getElementById("error property btn").innerHTML = ""
+        var properties = document.getElementById("form properties");
+        properties.appendChild(createNewProperty(newPropertyName.value, "resource"));
+        newPropertyName.value = "";
+      }
+    };
   }
 
-
-  function eleMouseDown () {
-    stateMouseDown = true;
-    document.addEventListener ("mousemove" , eleMouseMove , false);
-  }
-
-  function eleMouseMove (ev) {
-    var pX = ev.pageX;
-    var pY = ev.pageY;
-    ele.style.left = pX + "px";
-    ele.style.top = pY + "px";
-    document.addEventListener ("mouseup" , eleMouseUp , false);
-  }
-
-  function eleMouseUp () {
-    document.removeEventListener ("mousemove" , eleMouseMove , false);
-    document.removeEventListener ("mouseup" , eleMouseUp , false);
-  }
-
-}
-
-window.onload = function () {
-  prepareCustomFunctions();
 }

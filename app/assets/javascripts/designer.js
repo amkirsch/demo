@@ -2,25 +2,25 @@
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
-function prepareCustomFunctions() {
+function prepareDesignerFunctions() {
 
-  function eleMouseDown () {
-    stateMouseDown = true;
-    document.addEventListener ("mousemove" , eleMouseMove , false);
+  function handleDragStart(e) {
+    this.style.opacity = '0.4';  //this / e.target is the source node.
   }
 
-  function eleMouseMove (ev) {
-    var pX = ev.pageX;
-    var pY = ev.pageY;
-    ele.style.left = pX + "px";
-    ele.style.top = pY + "px";
-    document.addEventListener ("mouseup" , eleMouseUp , false);
+  function handleDragLeave(e) {
+    this.style.opacity = '1.0';  //this / e.target is the source node.
   }
 
-  function eleMouseUp () {
-    document.removeEventListener ("mousemove" , eleMouseMove , false);
-    document.removeEventListener ("mouseup" , eleMouseUp , false);
-  }
+  // var resources = document.querySelectorAll('#resources .resource');
+  var resources = document.getElementsByClassName('resource');
+  [].forEach.call(resources, function(resource) {
+    resource.addEventListener('dragstart', handleDragStart, false);
+    resource.addEventListener('dragleave', handleDragLeave, false); 
+  });
+
+}
+
 
   // var resources = document.getElementsByClassName ("resource");
   // //ele.onmousedown = eleMouseDown;
@@ -28,9 +28,20 @@ function prepareCustomFunctions() {
   //   resource = resources[i];
   //   resource.addEventListener ("mousedown" , eleMouseDown , false);
   // }
-
-}
-
-window.onload = function () {
-  prepareCustomFunctions();
-}
+  // function eleMouseDown () {
+  //   stateMouseDown = true;
+  //   document.addEventListener ("mousemove" , eleMouseMove , false);
+  // }
+  //
+  // function eleMouseMove (ev) {
+  //   var pX = ev.pageX;
+  //   var pY = ev.pageY;
+  //   ele.style.left = pX + "px";
+  //   ele.style.top = pY + "px";
+  //   document.addEventListener ("mouseup" , eleMouseUp , false);
+  // }
+  //
+  // function eleMouseUp () {
+  //   document.removeEventListener ("mousemove" , eleMouseMove , false);
+  //   document.removeEventListener ("mouseup" , eleMouseUp , false);
+  // }

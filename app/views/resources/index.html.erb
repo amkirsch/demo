@@ -21,14 +21,14 @@
         <td><%= resource.properties %></td>
         <td><%= resource.actions %></td>
         <td><%= link_to 'Show', cookbook_recipe_resource_url(id: resource.id, recipe_id: @recipe.id, cookbook_id: @cookbook.id), class: "btn btn-sm btn-primary" %></td>
-        <td><%= link_to 'Edit', edit_cookbook_recipe_resource_path(id: resource.id, recipe_id: @recipe.id, cookbook_id: @cookbook.id), class: "btn btn-sm btn-primary", method: :get %></td>
+        <td><%= link_to 'Edit', edit_cookbook_recipe_resource_path(id: resource.id, recipe_id: @recipe.id, cookbook_id: @cookbook.id), class: "btn btn-sm btn-primary" %></td>
         <td><%= link_to 'Destroy', [@cookbook, @recipe, resource], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-primary" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'New Resource', new_cookbook_recipe_resource_path, class: "btn btn-sm btn-primary", method: :get %>
+<%= link_to 'New Resource', new_cookbook_recipe_resource_path, class: "btn btn-sm btn-primary" %>
 
 <br>
 <hr>
