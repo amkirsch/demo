@@ -19,6 +19,9 @@
   cursor: move;
   text-align: justify;
 }
+.resource.over {
+  border: 2px dashed white;
+}
 
 .recipe {
   height: 35px;

@@ -3,12 +3,14 @@
     <ul>
       <li><strong><%= cookbook.name.capitalize %></strong></li>
         <% cookbook.recipes.each do |recipe| %>
+        <div class="recipes">
+           <div recipe-id="<%= recipe.id %>">
            <li><%= link_to recipe.name, {controller: 'designer', action: 'resources', recipe_id: recipe.id}, remote: true, class: 'recipe' %></li>
-           <div id="resources">
               <% recipe.resources.each do |resource| %>
-                <li class="resource" draggable="true">- <%= "#{resource.resource_type}: #{resource.name}" %></li>
+                <li class="resource" draggable="true" resource-id="<%= resource.id %>" >- <%= "#{resource.resource_type}: #{resource.name}" %></li>
               <% end %>
            </div>
+        </div>
         <% end %>
     </ul>
   <% end %>

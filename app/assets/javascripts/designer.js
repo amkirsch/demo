@@ -2,21 +2,95 @@
 // # All this logic will automatically be available in application.js.
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
+// NOTE: Reference: http://www.html5rocks.com/en/tutorials/dnd/basics/
+
 function prepareDesignerFunctions() {
 
+  var dragSrcEl = null;
   function handleDragStart(e) {
     this.style.opacity = '0.4';  //this / e.target is the source node.
+
+    dragSrcEl = this;
+
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/html', this.innerHTML);
+  }
+
+
+  function handleDragOver(e) {
+    if (e.preventDefault) {
+      e.preventDefault(); // Needed, allows to drop
+    }
+
+    e.dataTransfer.dropEffect = 'move'; // see the section on the DataTransfer object.
+
+    return false;
+  }
+
+  function handleDragEnter(e) {
+    this.classList.add('over');
   }
 
   function handleDragLeave(e) {
-    this.style.opacity = '1.0';  //this / e.target is the source node.
+    this.classList.remove('over');
+  }
+
+  function handleDrop(e) {
+    if (e.stopPropagation) {
+      e.stopPropagation(); // stops the browser from redirecting.
+    }
+    // Don't do anything if dropping the same resource we're dragging.
+    if (dragSrcEl != this) {
+      // Set the source resource's HTML to the HTML of the resource we dropped on.
+      dragSrcEl.innerHTML = this.innerHTML;
+      this.innerHTML = e.dataTransfer.getData('text/html');
+    }
+    return false;
+  }
+
+function saveItem(item) {
+  var request = new XMLHttpRequest();
+  var token = document.querySelector('meta[name="csrf-token"]').content;
+  console.log(token);
+  request.open('PUT', encodeURI('designer/sort?' + item));
+  request.setRequestHeader('X-CSRF-Token', token);
+  request.send();
+}
+function gatherPositions() {
+  var recipes = document.querySelectorAll('.recipes div');
+  console.log('recipes = ' + recipes);
+  [].forEach.call(recipes, function(recipe) {
+    var resources = recipe.querySelectorAll('.resource');
+    console.log('resources = ' + resources);
+    [].forEach.call(resources, function(resource, i) {
+      console.log('level2');
+      var position = i + 1;
+      var item = 'sort[recipe_id]=' + recipe.getAttribute('recipe-id') + '&sort[resource_id]=' + resource.getAttribute('resource-id') + '&sort[resource_position]=' + position;
+      saveItem(item);
+      console.log(item);
+    });
+  });
+}
+
+  function handleDragEnd(e) {
+    [].forEach.call(resources, function(resource) {
+      resource.classList.remove('over');
+      resource.style.opacity = '1.0';  //this / e.target is the source node.
+    });
+    console.log('before');
+    gatherPositions();
+    console.log('after');
   }
 
   // var resources = document.querySelectorAll('#resources .resource');
   var resources = document.getElementsByClassName('resource');
   [].forEach.call(resources, function(resource) {
     resource.addEventListener('dragstart', handleDragStart, false);
-    resource.addEventListener('dragleave', handleDragLeave, false); 
+    resource.addEventListener('dragenter', handleDragEnter, false);
+    resource.addEventListener('dragover', handleDragOver, false);
+    resource.addEventListener('dragleave', handleDragLeave, false);
+    resource.addEventListener('drop', handleDrop, false);
+    resource.addEventListener('dragend', handleDragEnd, false);
   });
 
 }
