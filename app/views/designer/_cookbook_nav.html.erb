@@ -5,7 +5,7 @@
         <% cookbook.recipes.each do |recipe| %>
         <div class="recipes">
            <div recipe-id="<%= recipe.id %>">
-           <li><%= link_to recipe.name, {controller: 'designer', action: 'resources', recipe_id: recipe.id}, remote: true, class: 'recipe' %></li>
+           <li class="recipe-li"><%= link_to recipe.name, {controller: 'designer', action: 'resources', recipe_id: recipe.id}, remote: true, class: 'recipe' %></li>
               <% recipe.resources.each do |resource| %>
                 <li class="resource" draggable="true" resource-id="<%= resource.id %>" >- <%= "#{resource.resource_type}: #{resource.name}" %></li>
               <% end %>
