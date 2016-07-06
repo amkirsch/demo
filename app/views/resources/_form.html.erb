@@ -15,8 +15,8 @@
   <legend>Resource</legend>
   <div class="field">
     <%= f.label :recipe_id %>
+    <%= @recipe.name %>
     <%= f.hidden_field :recipe_id, read_only: true %>
-    <%=  %>
   </div>
   <div class="field">
     <%= f.label :name %>
@@ -26,10 +26,17 @@
     <%= f.label :resource_type %>
     <%= f.text_field :resource_type %>
   </div>
+  <div class="field">
+    <%= f.label :position %>
+    <%= f.select(:position, 1..@resource_count) %>
+  </div>
 <fieldset>
+  <%# Properties require full customization from the user, therefore JS is used
+  to produce a dynamic form.
+  TODO: Consider an alternative approach using a more "Rails Way" method, as the
+   method used now will require major maintenance in the future! %>
   <legend>Properties</legend>
   <span id="error property btn"></span>
-  <%# f.label :properties %>
   <button id="add property btn" type="button" name="add property">Add Property</button>
   <input id="add property field" type="text" name="add property name">
   <div id="form properties">

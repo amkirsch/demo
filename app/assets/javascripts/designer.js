@@ -6,6 +6,26 @@
 
 function prepareDesignerFunctions() {
 
+  function ajax(url, data, x) {
+    try {
+      x = new(this.XMLHttpRequest || ActiveXObject)('MSXML2.XMLHTTP.3.0');
+      x.open(data ? 'POST' : 'GET', url, 1);
+      x.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+      x.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+      var token = document.querySelector('meta[name="csrf-token"]').content;
+      x.setRequestHeader('X-CSRF-Token', token);
+
+      // NOTE: Not sure if this will be needed or not
+      // x.onreadystatechange = function () {
+      //   x.readyState > 3 && callback && callback(x.responseText, x);
+      // };
+      x.send(data)
+    } catch (e) {
+      window.console && console.log(e);
+    }
+  };
+
   var dragSrcEl = null;
   function handleDragStart(e) {
     this.style.opacity = '0.4';  //this / e.target is the source node.
@@ -77,11 +97,12 @@ function prepareDesignerFunctions() {
   }
 
 function saveItem(item) {
-  var request = new XMLHttpRequest();
-  var token = document.querySelector('meta[name="csrf-token"]').content;
-  request.open('PUT', encodeURI('designer/sort?' + item));
-  request.setRequestHeader('X-CSRF-Token', token);
-  request.send();
+  ajax('designer/sort?', item)
+  // var request = new XMLHttpRequest();
+  // var token = document.querySelector('meta[name="csrf-token"]').content;
+  // request.open('POST', encodeURI('designer/sort?' + item));
+  // request.setRequestHeader('X-CSRF-Token', token);
+  // request.send();
 }
 function updatePositions() {
   var recipes = document.querySelectorAll('.recipes div');

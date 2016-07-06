@@ -31,12 +31,13 @@ ActiveRecord::Schema.define(version: 20160616131644) do
 
   create_table "resources", force: :cascade do |t|
     t.integer  "recipe_id"
-    t.string   "name"
-    t.string   "resource_type"
-    t.text     "properties"
-    t.text     "actions"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "name",                               null: false
+    t.string   "resource_type",                      null: false
+    t.text     "properties",    default: "--- {}\n", null: false
+    t.text     "actions",                            null: false
+    t.integer  "position",                           null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
 end

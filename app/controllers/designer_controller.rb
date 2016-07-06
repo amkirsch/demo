@@ -18,6 +18,7 @@ class DesignerController < ApplicationController
     params = sort_params
     recipe = Recipe.find(params[:recipe_id])
     resource = Resource.find(params[:resource_id])
+    resource.position = params[:resource_position]
     puts resource.recipe_id
     resource.recipe_id = recipe.id
     puts resource.recipe_id

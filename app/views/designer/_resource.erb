@@ -3,7 +3,9 @@
   <%= key %> "<%= value %>"
 <% end %>
   <%# resource.actions.each do |action| %>
-  action :<%= resource.actions %><%# action.to_s %>
+  <% unless resource.actions.empty? %>
+  <%= "action :#{resource.actions}" %><%# action.to_s %>
+  <% end %>
   <%# end %>
 end
 <%=  %>

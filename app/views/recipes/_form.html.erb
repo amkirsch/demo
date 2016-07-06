@@ -17,7 +17,8 @@
   </div>
   <div class="field">
     <%= f.label :cookbook_id %><br>
-    <%= f.text_field :cookbook_id %>
+    <%= @cookbook.name %>
+    <%= f.hidden_field :cookbook_id %>
   </div>
   <div class="actions">
     <%= f.submit %>
