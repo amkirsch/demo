@@ -1,17 +1,17 @@
 <nav id="side-nav">
   <% @cookbooks.each do |cookbook| %>
-    <ul>
-      <li><strong><%= cookbook.name.capitalize %></strong></li>
-        <% cookbook.recipes.each do |recipe| %>
-        <div class="recipes">
-           <div recipe-id="<%= recipe.id %>">
-           <li class="recipe-li"><%= link_to recipe.name, {controller: 'designer', action: 'resources', recipe_id: recipe.id}, remote: true, class: 'recipe' %></li>
-              <% recipe.resources.sorted.each do |resource| %>
-                <li class="resource" draggable="true" resource-id="<%= resource.id %>"" >- <%= "#{resource.resource_type}: #{resource.name}" %></li>
-              <% end %>
-           </div>
-        </div>
+  <ul>
+    <li><strong><%= cookbook.name.capitalize %></strong></li>
+    <div class="recipes">
+      <% cookbook.recipes.each do |recipe| %>
+      <div recipe-id="<%= recipe.id %>">
+        <li class="recipe"><%= link_to recipe.name, {controller: 'designer', action: 'resources', recipe_id: recipe.id}, remote: true, class: 'recipe' %></li>
+        <% recipe.resources.sorted.each do |resource| %>
+        <li class="resource" draggable="true" resource-id="<%= resource.id %>" >- <%= "#{resource.resource_type}: #{resource.name}" %></li>
         <% end %>
-    </ul>
+      </div>
+      <% end %>
+    </div>
+  </ul>
   <% end %>
 </nav>

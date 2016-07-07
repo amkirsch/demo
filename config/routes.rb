@@ -1,18 +1,19 @@
 Rails.application.routes.draw do
-  get 'users/new'
-  put 'designer/sort'
+
+  get 'designer/resources', to: 'designer#resources'
+  get 'designer', to: 'designer#index'
 
   resources :cookbooks do
     resources :recipes do
       resources :resources
     end
   end
-  match ':controller(/:action(/:id))', via: [:get, :post]
 
   resources :designer do
     put :sort
   end
 
+  match ':controller(/:action(/:id))', via: [:get, :post]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -67,4 +68,6 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  root 'designer#index'
 end

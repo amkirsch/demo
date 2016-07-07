@@ -8,14 +8,7 @@
 </head>
 <body>
 
-  <nav id="top-nav">
-    <ul>
-      <li><%= link_to 'Home', {controller: 'designer', action: 'index'} %></li>
-      <li><%= link_to 'Cookbooks', cookbooks_path %></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Contacts</a></li>
-    </ul>
-  </nav>
+<%= render(partial: 'layouts/top_nav') %>
 
 <%= render 'cookbook_nav' %>
 
@@ -25,5 +18,6 @@
 
 </div>
 
+<footer>2016 IBM, INC. All Rights Reserved.</footer>
 </body>
 </html>

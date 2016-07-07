@@ -61,29 +61,13 @@ function prepareDesignerFunctions() {
     }
     // Don't do anything if dropping the same resource we're dragging.
 
-    var recipes = document.getElementsByClassName('recipe-li');
+    var recipes = document.getElementsByClassName('recipe');
     [].forEach.call(recipes, function(recipe) {
       if (e.currentTarget === recipe) {
-        console.log('found recipe: ' + recipe.parentNode.getAttribute('recipe-id'));
-        console.log(dragSrcEl);
         recipe.parentNode.appendChild(dragSrcEl)
         return false
       }
     });
-    // var resources = document.querySelectorAll('.resource');
-    // [].forEach.call(resources, function(resource, i) {
-    //   console.log('comparing resource: ' + resource + ' to ' + e.currentTarget);
-    //   if (e.currentTarget === resource && dragSrcEl != e.currentTarget) {
-    //     // Set the source resource's HTML to the HTML of the resource we dropped on.
-    //     srcId = dragSrcEl.getAttribute('resource-id');
-    //     dragSrcEl.setAttribute('resource-id', this.getAttribute('resource-id'));
-    //     this.setAttribute('resource-id', srcId);
-    //
-    //     dragSrcEl.innerHTML = this.innerHTML;
-    //     this.innerHTML = e.dataTransfer.getData('text/html');
-    //   }
-    // });
-
     if (dragSrcEl != e.currentTarget && e.currentTarget.hasAttribute('resource-id')) {
       // Set the source resource's HTML to the HTML of the resource we dropped on.
       srcId = dragSrcEl.getAttribute('resource-id');
@@ -98,12 +82,8 @@ function prepareDesignerFunctions() {
 
 function saveItem(item) {
   ajax('designer/sort?', item)
-  // var request = new XMLHttpRequest();
-  // var token = document.querySelector('meta[name="csrf-token"]').content;
-  // request.open('POST', encodeURI('designer/sort?' + item));
-  // request.setRequestHeader('X-CSRF-Token', token);
-  // request.send();
 }
+
 function updatePositions() {
   var recipes = document.querySelectorAll('.recipes div');
   [].forEach.call(recipes, function(recipe) {
