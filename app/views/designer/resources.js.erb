@@ -1,4 +1,4 @@
 (function() {
-  $('#code').html("<%= escape_javascript(render partial: 'resources') %>");
-
+  code = document.getElementById('code');
+  code.innerHTML = "<%= escape_javascript(render partial: 'resources') %>";
 }).call(this);

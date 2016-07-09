@@ -6,6 +6,12 @@
 
 function prepareDesignerFunctions() {
 
+  var myModal = new Modal({content: "<div id='modal-content'></div>", maxWidth: 600});
+  var triggerButton = document.getElementById('trigger');
+  triggerButton.addEventListener('click', function() {
+    myModal.open();
+  });
+
   function ajax(url, data, x) {
     try {
       x = new(this.XMLHttpRequest || ActiveXObject)('MSXML2.XMLHTTP.3.0');

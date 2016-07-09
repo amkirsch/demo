@@ -1,0 +1,16 @@
+(function() {
+  $('#modal-content').html("<%= escape_javascript(render partial: 'resources/form') %>");
+  // code = document.getElementById('modal-content');
+  // code.innerHTML = "<%= escape_javascript(render partial: 'resources/form') %>";
+
+
+  // reload resource functions after Modal is opened
+  var ready;
+  ready = function () {
+    prepareResourceFunctions();
+  };
+
+  $(document).ready(ready);
+  $(document).on('page:load', ready);
+
+}).call(this);

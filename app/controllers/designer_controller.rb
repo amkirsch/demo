@@ -3,6 +3,17 @@ class DesignerController < ApplicationController
     @cookbooks = Cookbook.newest_first
   end
 
+  def edit
+    @cookbook = Cookbook.find(params[:cookbook_id])
+    @recipe = Recipe.find(params[:recipe_id])
+    @resource = Resource.find(params[:resource_id])
+    @resource_count = Resource.count
+    respond_to do |format|
+      format.js
+      format.html
+    end
+  end
+
   def resources
     @recipe = Recipe.find(params[:recipe_id])
     respond_to do |format|
@@ -30,6 +41,6 @@ class DesignerController < ApplicationController
   private
 
   def sort_params
-    params.require(:sort).permit(:recipe_id, :resource_id, :resource_position)
+    params.require(:sort).permit(:cookbook_id, :recipe_id, :resource_id, :resource_position)
   end
 end

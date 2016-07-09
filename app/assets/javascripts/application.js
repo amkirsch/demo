@@ -11,16 +11,25 @@
 // about supported directives.
 //
 //= require jquery
-//= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
 
 var ready;
 ready = function () {
+
   prepareResourceFunctions();
   prepareDesignerFunctions();
+
 };
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
+
+// ready(function() {
+//   prepareResourceFunctions();
+//   prepareDesignerFunctions();
+//
+// })
+//
+// function ready(f) {/in/.test(document.readyState)?setTimeout('ready('+f+')',9):f()};
