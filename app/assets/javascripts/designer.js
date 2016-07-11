@@ -4,17 +4,15 @@
 
 // NOTE: Reference: http://www.html5rocks.com/en/tutorials/dnd/basics/
 
+// Global so events can be attached
+var myModal;
+
 function prepareDesignerFunctions() {
 
-  var myModal = new Modal({content: "<div id='modal-content'></div>", maxWidth: 600});
+  myModal = new Modal({content: "<div id='modal-content'></div>", maxWidth: 600});
   var triggerButton = document.getElementById('trigger');
   triggerButton.addEventListener('click', function() {
     myModal.open();
-    console.log("stuff");
-    var form;
-    form = document.querySelector('#edit_resource_1');
-    form.setAttribute('data-remote', 'true')
-    console.log("stuff");
   });
 
   function ajax(url, data, x) {

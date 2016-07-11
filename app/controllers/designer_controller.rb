@@ -1,4 +1,5 @@
 class DesignerController < ApplicationController
+
   def index
     @cookbooks = Cookbook.newest_first
   end
@@ -9,7 +10,7 @@ class DesignerController < ApplicationController
     @resource = Resource.find(params[:resource_id])
     @resource_count = Resource.count
     respond_to do |format|
-      format.js
+      format.js #{ render 'index'}
       format.html
     end
   end
@@ -23,19 +24,15 @@ class DesignerController < ApplicationController
   end
 
   def sort
-    respond_to do |format|
-      format.js
-    end
     params = sort_params
     recipe = Recipe.find(params[:recipe_id])
     resource = Resource.find(params[:resource_id])
     resource.position = params[:resource_position]
-    puts resource.recipe_id
     resource.recipe_id = recipe.id
-    puts resource.recipe_id
-    puts "Here is our recipe: #{recipe.name} for resource: #{resource.name}"
     resource.save
-
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

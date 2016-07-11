@@ -22,6 +22,9 @@ $primary-color: #26343F;
 $secondary-color: #3B4B54;
 $tertiary-color: #4D636F;
 
+#modal-content {
+  background-color: $primary-color;
+}
 body {
   padding: 0;
   margin: 0;

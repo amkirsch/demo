@@ -6,6 +6,7 @@
 
 function prepareResourceFunctions() {
 
+  // Resource form functions below..
   function deleteProperty(propertyName) {
     var property = document.getElementById("custom property " + propertyName);
     property.innerHTML = '';

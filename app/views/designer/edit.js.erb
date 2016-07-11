@@ -1,36 +1,22 @@
-
 (function() {
-  // $('#modal-content').change({
-  //   // form = querySelector('#edit_resource_1');
-  //   console.log("stuff");
-  // });
-  $('#modal-content').html("<%= escape_javascript(render partial: 'resource_form') %>");
-  // code = document.getElementById('modal-content');
-  // code.innerHTML = "<%= escape_javascript(render partial: 'resources/form') %>";
 
-  // reload resource functions after Modal is opened
+  $('#modal-content').html("<%= escape_javascript(render partial: 'resources/form') %>");
+
   var ready;
   ready = function () {
+    // reload resource functions after Modal is opened
     prepareResourceFunctions();
-    prepareDesignerFunctions();
 
-    // form.setAttribute('data-remote', 'true');
-    // console.log("stuff");
-
-    // console.log("stuff");
-    // var submit;
-    // console.log("stuff");
-    // submit = document.querySelector("div.submit-button < input");
-    // console.log("stuff");
-    // console.log(submit);
+    var form = document.querySelector('#edit_resource_1');
+    form.setAttribute('data-remote', 'true')
+    var submit = document.querySelector("div.submit-button input");
+    console.log(submit);
+    submit.addEventListener('click', function() {
+      myModal.close();
+    });
   };
 
   $(document).ready(ready);
   // $(document).on('page:load', ready);
 
 }).call(this);
-
-// console.log("stuff");
-// var form;
-// form = querySelector('#edit_resource_1');
-// console.log("stuff");
