@@ -10,6 +10,11 @@ function prepareDesignerFunctions() {
   var triggerButton = document.getElementById('trigger');
   triggerButton.addEventListener('click', function() {
     myModal.open();
+    console.log("stuff");
+    var form;
+    form = document.querySelector('#edit_resource_1');
+    form.setAttribute('data-remote', 'true')
+    console.log("stuff");
   });
 
   function ajax(url, data, x) {
