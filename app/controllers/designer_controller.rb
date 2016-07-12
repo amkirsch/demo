@@ -10,7 +10,7 @@ class DesignerController < ApplicationController
     @resource = Resource.find(params[:resource_id])
     @resource_count = Resource.count
     respond_to do |format|
-      format.js #{ render 'index'}
+      format.js
       format.html
     end
   end

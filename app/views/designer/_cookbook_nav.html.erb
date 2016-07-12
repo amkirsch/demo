@@ -7,7 +7,11 @@
       <div recipe-id="<%= recipe.id %>">
         <li class="recipe"><%= link_to recipe.name, {controller: 'designer', action: 'resources', recipe_id: recipe.id}, remote: true, class: 'recipe' %></li>
         <% recipe.resources.sorted.each do |resource| %>
-        <li class="resource" draggable="true" resource-id="<%= resource.id %>" >- <%= "#{resource.resource_type}: #{resource.name}" %></li>
+        <li class="resource" draggable="true" resource-id="<%= resource.id %>" >- <%= "#{resource.resource_type}: #{resource.name}" %>
+          <div class="actions">
+            <%= link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'.html_safe, {controller: 'designer', action: 'edit', cookbook_id: cookbook.id, recipe_id: recipe.id, resource_id: resource.id}, remote: true, class: 'edit-btn' %>
+          </div>
+        </li>
         <% end %>
       </div>
       <% end %>
@@ -15,5 +19,4 @@
   </ul>
   <% end %>
 
-  <%= link_to "Edit", {controller: 'designer', action: 'edit', cookbook_id: 1, recipe_id: 1, resource_id: 1}, remote: true, id: 'trigger' %>
 </nav>

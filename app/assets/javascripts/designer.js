@@ -10,30 +10,16 @@ var myModal;
 function prepareDesignerFunctions() {
 
   myModal = new Modal({content: "<div id='modal-content'></div>", maxWidth: 600});
-  var triggerButton = document.getElementById('trigger');
-  triggerButton.addEventListener('click', function() {
-    myModal.open();
-  });
 
-  function ajax(url, data, x) {
-    try {
-      x = new(this.XMLHttpRequest || ActiveXObject)('MSXML2.XMLHTTP.3.0');
-      x.open(data ? 'POST' : 'GET', url, 1);
-      x.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-      x.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-      var token = document.querySelector('meta[name="csrf-token"]').content;
-      x.setRequestHeader('X-CSRF-Token', token);
-
-      // NOTE: Not sure if this will be needed or not
-      // x.onreadystatechange = function () {
-      //   x.readyState > 3 && callback && callback(x.responseText, x);
-      // };
-      x.send(data)
-    } catch (e) {
-      window.console && console.log(e);
-    }
-  };
+  var resourceEditButtons = document.querySelectorAll('.edit-btn');
+  var button;
+  for (var i = 0; i < resourceEditButtons.length; i++) {
+    button = resourceEditButtons[i];
+    console.log(button);
+    button.addEventListener('click', function() {
+      myModal.open();
+    });
+  }
 
   var dragSrcEl = null;
   function handleDragStart(e) {
@@ -89,21 +75,7 @@ function prepareDesignerFunctions() {
     return false;
   }
 
-function saveItem(item) {
-  ajax('designer/sort?', item)
-}
 
-function updatePositions() {
-  var recipes = document.querySelectorAll('.recipes div');
-  [].forEach.call(recipes, function(recipe) {
-    var resources = recipe.querySelectorAll('.resource');
-    [].forEach.call(resources, function(resource, i) {
-      var position = i + 1;
-      var item = 'sort[recipe_id]=' + recipe.getAttribute('recipe-id') + '&sort[resource_id]=' + resource.getAttribute('resource-id') + '&sort[resource_position]=' + position;
-      saveItem(item);
-    });
-  });
-}
 
   function handleDragEnd(e) {
     [].forEach.call(resources, function(resource) {
@@ -135,6 +107,41 @@ function updatePositions() {
 
 }
 
+function ajax(url, data, x) {
+  try {
+    x = new(this.XMLHttpRequest || ActiveXObject)('MSXML2.XMLHTTP.3.0');
+    x.open(data ? 'POST' : 'GET', url, 1);
+    x.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+    x.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+    var token = document.querySelector('meta[name="csrf-token"]').content;
+    x.setRequestHeader('X-CSRF-Token', token);
+
+    // NOTE: Not sure if this will be needed or not
+    // x.onreadystatechange = function () {
+    //   x.readyState > 3 && callback && callback(x.responseText, x);
+    // };
+    x.send(data)
+  } catch (e) {
+    window.console && console.log(e);
+  }
+};
+
+function updatePositions() {
+  var recipes = document.querySelectorAll('.recipes div');
+  [].forEach.call(recipes, function(recipe) {
+    var resources = recipe.querySelectorAll('.resource');
+    [].forEach.call(resources, function(resource, i) {
+      var position = i + 1;
+      var item = 'sort[recipe_id]=' + recipe.getAttribute('recipe-id') + '&sort[resource_id]=' + resource.getAttribute('resource-id') + '&sort[resource_position]=' + position;
+      saveItem(item);
+    });
+  });
+
+  function saveItem(item) {
+    ajax('designer/sort?', item)
+  }
+}
 
   // var resources = document.getElementsByClassName ("resource");
   // //ele.onmousedown = eleMouseDown;

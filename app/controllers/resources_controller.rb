@@ -48,6 +48,7 @@ class ResourcesController < ApplicationController
     respond_to do |format|
       if @resource.update(resource_params)
         format.html { redirect_to [@cookbook, @recipe, @resource], notice: 'Resource was successfully updated.' }
+        format.js { render inline: "location.reload();" }
         format.json { render :show, status: :ok, location: [@cookbook, @recipe, @resource] }
       else
         @resource_count = Resource.count

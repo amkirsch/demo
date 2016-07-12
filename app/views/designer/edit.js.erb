@@ -2,21 +2,17 @@
 
   $('#modal-content').html("<%= escape_javascript(render partial: 'resources/form') %>");
 
-  var ready;
-  ready = function () {
+  var reload;
+  reload = function () {
     // reload resource functions after Modal is opened
     prepareResourceFunctions();
 
-    var form = document.querySelector('#edit_resource_1');
-    form.setAttribute('data-remote', 'true')
+    var form = document.querySelectorAll('form');
+    form[0].setAttribute('data-remote', 'true')
     var submit = document.querySelector("div.submit-button input");
-    console.log(submit);
-    submit.addEventListener('click', function() {
-      myModal.close();
-    });
   };
 
-  $(document).ready(ready);
+  $(document).ready(reload);
   // $(document).on('page:load', ready);
 
 }).call(this);
