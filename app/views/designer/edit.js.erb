@@ -6,6 +6,7 @@
   reload = function () {
     // reload resource functions after Modal is opened
     prepareResourceFunctions();
+    prepareDesignerFunctions();
 
     var form = document.querySelectorAll('form');
     form[0].setAttribute('data-remote', 'true')
