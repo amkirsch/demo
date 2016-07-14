@@ -19,6 +19,7 @@ var ready;
 ready = function () {
 
   prepareResourceFunctions();
+  prepareResourceButtons();  
   prepareDesignerFunctions();
 
 };

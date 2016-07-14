@@ -5,10 +5,39 @@ class DesignerController < ApplicationController
   end
 
   def edit
-    @cookbook = Cookbook.find(params[:cookbook_id])
-    @recipe = Recipe.find(params[:recipe_id])
-    @resource = Resource.find(params[:resource_id])
-    @resource_count = Resource.count
+
+    @cookbook = Cookbook.find(params[:cookbook_id]) if params[:cookbook_id]
+    @recipe = Recipe.find(params[:recipe_id]) if params[:recipe_id]
+    @resource = Resource.find(params[:resource_id]) if params[:resource_id]
+
+    if @resource
+      @resource_count = Resource.count
+      @form = "resources"
+    elsif @recipe
+      @form = "recipes"
+    elsif @cookbook
+      @form = "cookbooks"
+    end
+
+    respond_to do |format|
+      format.js
+      format.html
+    end
+  end
+
+  def create
+    puts "LOUD NOISES!!"
+    @cookbook = Cookbook.find(params[:cookbook_id]) if params[:cookbook_id]
+    @recipe = Recipe.find(params[:recipe_id]) if params[:recipe_id]
+    if @recipe
+      @form = "resources"
+      @resource = Resource.new({recipe_id: @recipe.id})
+      @resource_count = Resource.count + 1
+    elsif @cookbook
+      @form = "recipe"
+    else
+      @form = "cookbook"
+    end
     respond_to do |format|
       format.js
       format.html

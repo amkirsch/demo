@@ -12,12 +12,43 @@
   -webkit-user-drag: element;
 }
 
+.actions {
+  border: 2px white;
+  width: 40px;
+  height: 15px;
+  i {
+  opacity: 0.25;
+  }
+  i:hover {
+    opacity: 1.0;
+  }
+}
+
+.actions.new-resource{
+  padding-left: 1.5em;
+}
+
 .resource.over {
-  border: 2px dashed white;
+  border: 1px dashed white;
+}
+
+
+.cookbook{
+  padding-left: 0;
+  .actions {
+    float: right;
+  }
+}
+
+.recipe {
+  padding-left: 0.5em;
+  .actions {
+    float: right;
+  }
 }
 
 .resource {
-  border-top: 1px solid #111111;
+  padding-left: 1.5em;
   &:hover { background-color: #3B4B54; }
   .actions {
     float: right;

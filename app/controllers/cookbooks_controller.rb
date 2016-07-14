@@ -31,9 +31,11 @@ class CookbooksController < ApplicationController
     respond_to do |format|
       if @cookbook.save
         format.html { redirect_to @cookbook, notice: 'Cookbook was successfully created.' }
+        format.js { render inline: "location.reload();" }
         format.json { render :show, status: :created, location: @cookbook }
       else
         format.html { render :new }
+        format.js {render 'designer/edit'}
         format.json { render json: @cookbook.errors, status: :unprocessable_entity }
       end
     end
@@ -45,9 +47,11 @@ class CookbooksController < ApplicationController
     respond_to do |format|
       if @cookbook.update(cookbook_params)
         format.html { redirect_to @cookbook, notice: 'Cookbook was successfully updated.' }
+        format.js { render inline: "location.reload();" }
         format.json { render :show, status: :ok, location: @cookbook }
       else
         format.html { render :edit }
+        format.js {render 'designer/edit'}
         format.json { render json: @cookbook.errors, status: :unprocessable_entity }
       end
     end

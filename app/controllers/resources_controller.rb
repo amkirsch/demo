@@ -33,10 +33,13 @@ class ResourcesController < ApplicationController
     respond_to do |format|
       if @resource.save
         format.html { redirect_to [@cookbook, @recipe, @resource], notice: 'Resource was successfully created.' }
+        format.js { render inline: "location.reload();" }
         format.json { render :show, status: :created, location: [@cookbook, @recipe, @resource] }
       else
         @resource_count = Resource.count + 1
+        @form = 'resources' # used to pass back the proper form for js callback
         format.html { render :new }
+        format.js {render 'designer/create'}
         format.json { render json: @resource.errors, status: :unprocessable_entity }
       end
     end
@@ -52,7 +55,9 @@ class ResourcesController < ApplicationController
         format.json { render :show, status: :ok, location: [@cookbook, @recipe, @resource] }
       else
         @resource_count = Resource.count
+        @form = 'resources' # used to pass back the proper form for js callback
         format.html { render :edit }
+        format.js {render 'designer/edit'}
         format.json { render json: @resource.errors, status: :unprocessable_entity }
       end
     end
@@ -64,6 +69,7 @@ class ResourcesController < ApplicationController
     @resource.destroy
     respond_to do |format|
       format.html { redirect_to cookbook_recipe_resources_url, notice: 'Resource was successfully destroyed.' }
+      format.js { render inline: "location.reload();" }
       format.json { head :no_content }
     end
   end

@@ -32,9 +32,11 @@ class RecipesController < ApplicationController
     respond_to do |format|
       if @recipe.save
         format.html { redirect_to [@cookbook, @recipe], notice: 'Recipe was successfully created.' }
+        format.js { render inline: "location.reload();" }
         format.json { render :show, status: :created, location: [@cookbook, @recipe] }
       else
         format.html { render :new }
+        format.js {render 'designer/edit'}
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
     end
@@ -46,9 +48,11 @@ class RecipesController < ApplicationController
     respond_to do |format|
       if @recipe.update(recipe_params)
         format.html { redirect_to [@cookbook, @recipe], notice: 'Recipe was successfully updated.' }
+        format.js { render inline: "location.reload();" }
         format.json { render :show, status: :ok, location: [@cookbook, @recipe] }
       else
         format.html { render :edit }
+        format.js {render 'designer/edit'}
         format.json { render json: @recipe.errors, status: :unprocessable_entity }
       end
     end

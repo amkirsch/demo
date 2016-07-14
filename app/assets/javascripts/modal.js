@@ -125,9 +125,9 @@
       this.closeButton.addEventListener('click', this.close.bind(this));
     }
 
-    if (this.overlay) {
-      this.overlay.addEventListener('click', this.close.bind(this));
-    }
+    // if (this.overlay) {
+    //   this.overlay.addEventListener('click', this.close.bind(this));
+    // }
 
   }
 

@@ -7,19 +7,32 @@
 // Global so events can be attached
 var myModal;
 
-function prepareDesignerFunctions() {
-
+function prepareResourceButtons() {
   myModal = new Modal({content: "<div id='modal-content'></div>", maxWidth: 600});
 
   var resourceEditButtons = document.querySelectorAll('.edit-btn');
-  var button;
+  var editButton;
   for (var i = 0; i < resourceEditButtons.length; i++) {
-    button = resourceEditButtons[i];
-    console.log(button);
-    button.addEventListener('click', function() {
+    editButton = resourceEditButtons[i];
+    console.log(editButton);
+    editButton.addEventListener('click', function(evt) {
       myModal.open();
     });
   }
+
+  var resourceCreateButtons = document.querySelectorAll('.create-btn');
+  var createButton;
+  for (var i = 0; i < resourceCreateButtons.length; i++) {
+    createButton = resourceCreateButtons[i];
+    console.log(createButton);
+    createButton.addEventListener('click', function(evt) {
+      myModal.open();
+    });
+  }
+}
+
+
+function prepareDesignerFunctions() {
 
   var dragSrcEl = null;
   function handleDragStart(e) {

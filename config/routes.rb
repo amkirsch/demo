@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   get 'designer/resources', to: 'designer#resources'
   get 'designer/edit', to: 'designer#edit'
+  get 'designer/create', to: 'designer#create'
   get 'designer', to: 'designer#index'
 
   resources :cookbooks do
