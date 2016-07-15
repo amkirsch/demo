@@ -8,8 +8,8 @@
 var myModal;
 
 function prepareResourceButtons() {
-  myModal = new Modal({content: "<div id='modal-content'></div>", maxWidth: 600});
 
+  myModal = new Modal({content: "<div id='modal-content'></div>", maxWidth: 600});
   var resourceEditButtons = document.querySelectorAll('.edit-btn');
   var editButton;
   for (var i = 0; i < resourceEditButtons.length; i++) {
@@ -95,7 +95,6 @@ function prepareDesignerFunctions() {
       resource.classList.remove('over');
       resource.style.opacity = '1.0';  //this / e.target is the source node.
     });
-    updatePositions();
     dragSrcEl = null;
   }
 

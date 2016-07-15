@@ -26,7 +26,6 @@ class DesignerController < ApplicationController
   end
 
   def create
-    puts "LOUD NOISES!!"
     @cookbook = Cookbook.find(params[:cookbook_id]) if params[:cookbook_id]
     @recipe = Recipe.find(params[:recipe_id]) if params[:recipe_id]
     if @recipe
