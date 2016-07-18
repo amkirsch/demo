@@ -60,9 +60,18 @@ class CookbooksController < ApplicationController
   # DELETE /cookbooks/1
   # DELETE /cookbooks/1.json
   def destroy
+    if @cookbook.recipes
+      @cookbook.recipes.each do |recipe|
+        if recipe.resources
+          recipe.resources.each { |resource| resource.destroy }
+        end
+        recipe.destroy
+      end
+    end
     @cookbook.destroy
     respond_to do |format|
       format.html { redirect_to cookbooks_url, notice: 'Cookbook was successfully destroyed.' }
+      format.js { render inline: "location.reload();" }
       format.json { head :no_content }
     end
   end

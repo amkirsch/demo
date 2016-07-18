@@ -67,6 +67,7 @@ class RecipesController < ApplicationController
     @recipe.destroy
     respond_to do |format|
       format.html { redirect_to cookbook_recipes_url, notice: 'Recipe was successfully destroyed.' }
+      format.js { render inline: "location.reload();" }
       format.json { head :no_content }
     end
   end

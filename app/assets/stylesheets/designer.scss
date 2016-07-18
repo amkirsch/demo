@@ -26,6 +26,18 @@
 
 .actions.new-resource{
   padding-left: 1.5em;
+  width: 125px;
+}
+
+.actions.new-recipe{
+  padding-left: 0.5em;
+  width: 100px;
+}
+
+.actions.new-cookbook i{
+  padding-left: 0em;
+  width: 125px;
+  opacity: 0.75;
 }
 
 .resource.over {

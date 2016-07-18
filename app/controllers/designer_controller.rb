@@ -33,9 +33,11 @@ class DesignerController < ApplicationController
       @resource = Resource.new({recipe_id: @recipe.id})
       @resource_count = Resource.count + 1
     elsif @cookbook
-      @form = "recipe"
+      @form = "recipes"
+      @recipe = Recipe.new({cookbook_id: @cookbook.id})
     else
-      @form = "cookbook"
+      @form = "cookbooks"
+      @cookbook = Cookbook.new
     end
     respond_to do |format|
       format.js

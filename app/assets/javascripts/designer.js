@@ -31,7 +31,6 @@ function prepareResourceButtons() {
   }
 }
 
-
 function prepareDesignerFunctions() {
 
   var dragSrcEl = null;
@@ -84,11 +83,17 @@ function prepareDesignerFunctions() {
 
       dragSrcEl.innerHTML = this.innerHTML;
       this.innerHTML = e.dataTransfer.getData('text/html');
+
+      // ensure our click events are reset post DnD
+      dragSrcEl.querySelector('.edit-btn').addEventListener('click', function(evt) {
+        myModal.open();
+      });
+      this.querySelector('.edit-btn').addEventListener('click', function(evt) {
+        myModal.open();
+      });
     }
     return false;
   }
-
-
 
   function handleDragEnd(e) {
     [].forEach.call(resources, function(resource) {
@@ -96,6 +101,7 @@ function prepareDesignerFunctions() {
       resource.style.opacity = '1.0';  //this / e.target is the source node.
     });
     dragSrcEl = null;
+    updatePositions();
   }
 
   // var resources = document.querySelectorAll('#resources .resource');
