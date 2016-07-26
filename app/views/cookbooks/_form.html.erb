@@ -11,12 +11,10 @@
     </div>
   <% end %>
 
-<fieldset>
   <div class="field">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, autofocus: true, class: 'active_field' %>
   </div>
-</fieldset>
 
   <div class="submit-button">
     <%= f.submit %>

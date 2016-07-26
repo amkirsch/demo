@@ -151,32 +151,99 @@ footer a {
 }
 
 form {
-  max-width: 600px;
-  margin: 50px auto;
-  label {
-    width: 100px;
-    text-align: right;
-    float: left;
-    font-weight: bold;
-    padding-right: 15px;
-    margin-bottom: 2px;
-  }
-  input {
-    width: 300px;
-    float: left;
-    margin-bottom: 2px;
-  }
-  fieldset {
-    margin-bottom: 10px;
-  }
-  div.field {
-    clear: both;
-    padding: 5px;
-  }
-  div.btn input {
-    float: left;
-    clear: both;
-    width: auto;
-  }
+  // background: -webkit-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
+  // background: -moz-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
+  // background: linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
+  background: #26343F;
+  // margin: auto;
+  // position: relative;
+  // width: 550px;
+  height: 100%;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 14px;
+  font-style: italic;
+  line-height: 24px;
+  font-weight: bold;
+  color: #09C;
+  text-decoration: none;
+  // border-radius: 10px;
+  padding: 10px;
+  // border: 1px solid #999;
+  // border: inset 1px solid #333;
+  // -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  // -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  // box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+
+input {
+  width: 375px;
+  display: block;
+  border: 1px solid #999;
+  height: 25px;
+  -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+
+textarea:focus, input:focus {
+  border: 1px solid #09C;
+}
+
+input.button:hover {
+  background: #fff;
+  color: #09C;
+}
+
+.submit-button input{
+  margin: 5px 0px 5px 0px;
+  width: 125px;
+  background: #09C;
+  color: #fff;
+  font-family: Tahoma, Geneva, sans-serif;
+  height: 30px;
+  border-radius: 5px;
+}
+
+div.field {
+  padding: 3px;
+}
+
+add#property#btn {
 
 }
+  // <legend>Properties</legend>
+  // <span id="error property btn"></span>
+  // <button id="add property btn" type="button" name="add property">Add Property</button>
+  // <input id="add property field" type="text" name="add property name">
+  // <div id="form properties">
+  //   <%= f.fields_for :properties, OpenStruct.new(f.object.properties || {}) do |f2| %>
+  //     <% @resource.properties.each do |key, value| %>
+  //     <div class="field">
+  //       <%= f2.label key %>
+  //       <%= f2.text_field key %>
+  //       <button type="button" name="delete_button" class="delete_button">Delete</button>
+// form {
+// //   max-width: 600px;
+//   margin: 50px auto;
+//   label {
+//     width: 100px;
+//     float: left;
+//     font-weight: bold;
+//     padding-right: 15px;
+//     margin-bottom: 2px;
+//   }
+//   input {
+//     width: 300px;
+//     float: right;
+//     margin-bottom: 2px;
+//   }
+// //   fieldset {
+// //     margin-bottom: 10px;
+// //   }
+// //   div.btn input {
+// //     float: left;
+// //     clear: both;
+// //     width: auto;
+// //   }
+//
+// }

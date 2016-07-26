@@ -14,7 +14,6 @@ function prepareResourceButtons() {
   var editButton;
   for (var i = 0; i < resourceEditButtons.length; i++) {
     editButton = resourceEditButtons[i];
-    console.log(editButton);
     editButton.addEventListener('click', function(evt) {
       myModal.open();
     });
@@ -24,7 +23,6 @@ function prepareResourceButtons() {
   var createButton;
   for (var i = 0; i < resourceCreateButtons.length; i++) {
     createButton = resourceCreateButtons[i];
-    console.log(createButton);
     createButton.addEventListener('click', function(evt) {
       myModal.open();
     });
@@ -32,6 +30,19 @@ function prepareResourceButtons() {
 }
 
 function prepareDesignerFunctions() {
+
+  /* Toggle between adding and removing the "active" and "show" classes when the user clicks on one of the "Section" buttons. The "active" class is used to add a background color to the current button when its belonging panel is open. The "show" class is used to open the specific accordion panel */
+  var acc = document.getElementsByClassName("accordion");
+  var i;
+
+  for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function(){
+      var icon = $(this).children('i:first');
+      icon.toggleClass('fa-caret-right fa-caret-down');
+      this.classList.toggle("active");
+      this.nextElementSibling.nextElementSibling.classList.toggle("show");
+    }
+  }
 
   var dragSrcEl = null;
   function handleDragStart(e) {
@@ -146,7 +157,7 @@ function ajax(url, data, x) {
 };
 
 function updatePositions() {
-  var recipes = document.querySelectorAll('.recipes div');
+  var recipes = document.querySelectorAll('[recipe-id]');
   [].forEach.call(recipes, function(recipe) {
     var resources = recipe.querySelectorAll('.resource');
     [].forEach.call(resources, function(resource, i) {
@@ -159,6 +170,7 @@ function updatePositions() {
   function saveItem(item) {
     ajax('designer/sort?', item)
   }
+
 }
 
   // var resources = document.getElementsByClassName ("resource");

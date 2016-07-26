@@ -11,6 +11,9 @@
     var form = document.querySelectorAll('form');
     form[0].setAttribute('data-remote', 'true');
     var submit = document.querySelector("div.submit-button input");
+    active = document.querySelectorAll(".active_field");
+    active[0].focus();
+    active[0].select();
   };
 
   $(document).ready(reload);

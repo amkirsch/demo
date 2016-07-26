@@ -1,42 +1,45 @@
-<%# TODO: Fuck around with the css to get this layout looking okay!! %>
 <nav id="side-nav">
   <% @cookbooks.each do |cookbook| %>
   <ul>
-    <li class="cookbook"><strong><%= cookbook.name.capitalize %></strong>
+    <span class="accordion"><i class="fa fa-fw fa-caret-right" aria-hidden="true"></i></span><li class="cookbook"><span class="cookbook-title"><%= cookbook.name.capitalize %></span>
+      <div class="new-recipe-action">
+        <%= link_to '<i class="fa fa-fw fa-plus" aria-hidden="true"></i>'.html_safe, designer_create_path(cookbook_id: cookbook.id), remote: true, class: 'create-btn' %>
+      </div>
       <div class="actions">
         <%= link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'.html_safe, {controller: 'designer', action: 'edit', cookbook_id: cookbook.id}, remote: true, class: 'edit-btn' %>
-        <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, [cookbook], method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-sm btn-primary" %>
+        <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, [cookbook], method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-sm btn-primary" %>
       </div>
     </li>
-      <div class="actions new-recipe">
-        <%= link_to '<i class="fa fa-plus" aria-hidden="true"></i>'.html_safe, designer_create_path(cookbook_id: cookbook.id), remote: true, class: 'create-btn' %>
-      </div>
-    <div class="recipes">
-      <% cookbook.recipes.each do |recipe| %>
-      <div recipe-id="<%= recipe.id %>">
-        <li class="recipe"><%= link_to recipe.name, {controller: 'designer', action: 'resources', recipe_id: recipe.id}, remote: true, class: 'recipe' %>
-          <div class="actions">
-            <%= link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'.html_safe, {controller: 'designer', action: 'edit', cookbook_id: cookbook.id, recipe_id: recipe.id}, remote: true, class: 'edit-btn' %>
-            <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, [cookbook, recipe], method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-sm btn-primary" %>
+    <div class="panel">
+      <div class="recipes">
+        <% cookbook.recipes.each do |recipe| %>
+        <div recipe-id="<%= recipe.id %>">
+          <span class="accordion recipe-accordion"><i class="fa fa-caret-right" aria-hidden="true"></i></span><li class="recipe"><%= link_to recipe.name, {controller: 'designer', action: 'resources', recipe_id: recipe.id}, remote: true, class: 'recipe recipe-link' %>
+            <div class="new-resource-action">
+              <%= link_to '<i class="fa fa-fw fa-plus" aria-hidden="true"></i>'.html_safe, designer_create_path(cookbook_id: cookbook.id, recipe_id: recipe.id), remote: true, class: 'create-btn' %>
+            </div>
+            <div class="actions">
+              <%= link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'.html_safe, {controller: 'designer', action: 'edit', cookbook_id: cookbook.id, recipe_id: recipe.id}, remote: true, class: 'edit-btn' %>
+              <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, [cookbook, recipe], method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-sm btn-primary" %>
+            </div>
+          </li>
+          <div class="panel">
+            <% recipe.resources.sorted.each do |resource| %>
+            <li class="resource" draggable="true" resource-id="<%= resource.id %>" ><%= "#{resource.resource_type}: #{resource.name}" %>
+              <div class="actions">
+                <%= link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'.html_safe, {controller: 'designer', action: 'edit', cookbook_id: cookbook.id, recipe_id: recipe.id, resource_id: resource.id}, remote: true, class: 'edit-btn' %>
+                <%= link_to '<i class="fa fa-trash-o" aria-hidden="true"></i>'.html_safe, [cookbook, recipe, resource], method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-sm btn-primary" %>
+              </div>
+            </li>
+            <% end %>
           </div>
-        </li>
-        <% recipe.resources.sorted.each do |resource| %>
-        <li class="resource" draggable="true" resource-id="<%= resource.id %>" ><%= "#{resource.resource_type}: #{resource.name}" %>
-          <div class="actions">
-            <%= link_to '<i class="fa fa-pencil-square-o" aria-hidden="true"></i>'.html_safe, {controller: 'designer', action: 'edit', cookbook_id: cookbook.id, recipe_id: recipe.id, resource_id: resource.id}, remote: true, class: 'edit-btn' %>
-            <%= link_to '<i class="fa fa-times" aria-hidden="true"></i>'.html_safe, [cookbook, recipe, resource], method: :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-sm btn-primary" %>
-          </div>
-        </li>
+        </div>
         <% end %>
       </div>
-        <div class="actions new-resource">
-          <%= link_to '<i class="fa fa-plus" aria-hidden="true"></i>'.html_safe, designer_create_path(cookbook_id: cookbook.id, recipe_id: recipe.id), remote: true, class: 'create-btn' %>
-        </div>
-      <% end %>
     </div>
   </ul>
   <% end %>
   <div class="actions new-cookbook">
-    <%= link_to '<i class="fa fa-plus" aria-hidden="true"> New Cookbook</i>'.html_safe, designer_create_path(), remote: true, class: 'create-btn' %>
+    <%= link_to '<i class="fa fa-fw fa-plus" aria-hidden="true"> New Cookbook</i>'.html_safe, designer_create_path(), remote: true, class: 'create-btn' %>
   </div>
 </nav>
